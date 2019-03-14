@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Click the box!</title>
+</head>
+<body>
+    <div>
+        <h1>Click the box!</h1>
+        <span>Score: </span>
+        
+        <span id="score"></span>
+    </div>
+    <button id="green">Easy</button>
+    <button id="orange">Normal</button>
+    <button id="red">Hard</button>
+
+    <div style="position: relative; height:1000px; width: 1000px; margin: 5rem;">
+        <div id="box" style="height:100px; width:100px; position: absolute; border: 1px solid black; text-align: center; padding-top: 38px; box-sizing: border-box; visibility: hidden;">Click me!</div>        
+    </div>
+
+    <script>
+        var score = 0
+        var scoreBox = document.getElementById('score')
+        var buttons = document.getElementsByTagName('button')
+        var box = document.getElementById('box')
+
+        for(var i = 0; i < buttons.length; i++)
+        {
+            buttons[i].addEventListener('click', function(){
+            box.style.backgroundColor = this.getAttribute('id')
+
+            if(this.innerHTML == 'Easy'){
+                box.style.height = '100px'
+                box.style.width = '100px'
+                box.style.paddingTop = '38px'
+                box.style.visibility = 'visible'
+            } else if (this.innerHTML == 'Normal'){
+                box.style.height = '75px'
+                box.style.width = '75px'
+                box.style.paddingTop = '26px'
+                box.style.visibility = 'visible'
+            } else {
+                box.style.height = '50px'
+                box.style.width = '50px'
+                box.style.paddingTop = '7px'
+                box.style.visibility = 'visible'
+            }
+
+            scoreBox.innerHTML = ""
+            score = 0
+        })
+        }
+
+        box.addEventListener('mouseover', function(){
+            this.style.left = (Math.random()*300) + "px"
+            this.style.right = (Math.random()*300) + "px"
+            this.style.top = (Math.random()*300) + "px"
+            this.style.bottom = (Math.random()*300) + "px"
+        })
+
+        box.addEventListener('click', function(){
+            if(this.style.visibility == 'visible'){
+                score++
+                scoreBox.innerHTML = score
+            }
+            this.style.left = (Math.random()*500) + "px"
+            this.style.right = (Math.random()*500) + "px"
+            this.style.top = (Math.random()*500) + "px"
+            this.style.bottom = (Math.random()*500) + "px"
+        })
+
+    </script>
+</body>
+</html>
